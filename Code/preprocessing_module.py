@@ -3,6 +3,7 @@ from torch.utils.data import Dataset
 from skimage import io
 from sklearn.model_selection import train_test_split
 
+
 class BeanTechDataset(Dataset):
     """BeanTech dataset."""
 
