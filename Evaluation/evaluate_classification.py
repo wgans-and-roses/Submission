@@ -25,7 +25,7 @@ def evaluate_classification(path):
     loader = DataLoader(dataset, batch_size=len(dataset), shuffle=False, num_workers=4)
 
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-    loaded_dict = torch.load('model.m')
+    loaded_dict = torch.load('model.m', map_location='cpu')
     model = Alexnet()
     model.load_state_dict(loaded_dict['model'])
     model = model.to(device)
