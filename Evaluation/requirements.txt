@@ -1,0 +1,4 @@
+pytorch
+torchvision
+scikit-learn
+scikit-image
