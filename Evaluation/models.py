@@ -19,7 +19,7 @@ class Alexnet(nn.Module):
     name = 'alexnet'
     def __init__(self):
         super().__init__()
-        model = models.alexnet(pretrained=True)
+        model = models.alexnet(pretrained=False)
 
         self.features = model.features
 
