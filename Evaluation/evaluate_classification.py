@@ -26,15 +26,19 @@ def evaluate_classification(path):
 
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     loaded_dict = torch.load('model.m', map_location='cpu')
+    print('Loading model...')
     model = Alexnet()
     model.load_state_dict(loaded_dict['model'])
     model = model.to(device)
     model.eval()
     with torch.no_grad():
+        print('Loading data...')
         data = next(iter(loader))
         X = data['image'].float().to(device)
         X = X.expand(-1, 3, -1, -1)
+        print('Evaluating model...')
         pred = model(X).round().byte().view(-1)
+    print('Writing to file...')
     pred_str = [build_string(name, value) for name, value in zip(data['image_name'], pred.tolist())]
     with open("classification_results.txt", "a") as file:
         file.write(''.join(pred_str))
